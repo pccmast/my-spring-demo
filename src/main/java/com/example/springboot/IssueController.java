@@ -27,6 +27,8 @@ public class IssueController {
             @PathVariable("repo") String repo,
             @RequestBody Object requestBody
     ) {
+        System.out.println(owner);
+        System.out.println(repo);
         System.out.println(requestBody);
     }
 }
