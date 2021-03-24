@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="User" type="com.example.springboot.entity.User"/>
+        <typeAlias alias="RankItem" type="com.example.springboot.entity.RankItem"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">

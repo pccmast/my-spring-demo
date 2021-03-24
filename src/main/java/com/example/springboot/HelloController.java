@@ -1,16 +1,23 @@
 package com.example.springboot;
 
 import com.example.springboot.dao.UserMapper;
+import com.example.springboot.entity.RankItem;
 import com.example.springboot.entity.User;
+import com.example.springboot.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class HelloController {
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RankService rankService;
 
     /**
      * 从get命令中获取传入的查询字符串并且打印
@@ -46,5 +53,10 @@ public class HelloController {
     @RequestMapping("/user")
     public User searchUser(@RequestParam(value = "id") int id) {
         return userMapper.selectUserById(id);
+    }
+
+    @RequestMapping("/rank")
+    public List<RankItem> rankUser() {
+        return rankService.doService();
     }
 }
