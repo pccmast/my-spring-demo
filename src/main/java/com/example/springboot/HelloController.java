@@ -1,11 +1,16 @@
 package com.example.springboot;
 
+import com.example.springboot.dao.UserMapper;
+import com.example.springboot.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 从get命令中获取传入的查询字符串并且打印
@@ -36,5 +41,10 @@ public class HelloController {
     @RequestMapping("/")
     public String index() {
         return "Greetings from Spring Boot!";
+    }
+
+    @RequestMapping("/user")
+    public User searchUser(@RequestParam(value = "id") int id) {
+        return userMapper.selectUserById(id);
     }
 }

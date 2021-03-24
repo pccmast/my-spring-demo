@@ -3,6 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <typeAliases>
+        <typeAlias alias="User" type="com.example.springboot.entity.User"/>
+    </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -15,7 +18,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="resource/db/mybatis/MyMapper.xml"/>
+        <mapper resource="./db/mybatis/MyMapper.xml"/>
         <package name="com.example.springboot.dao"/>
     </mappers>
 </configuration>
