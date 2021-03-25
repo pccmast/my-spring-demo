@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>排行榜</h1>
-<table>
+<table id="rank-table">
     <thead>
     <tr>
         <td>排名</td>
@@ -26,6 +26,11 @@
         if (httpRequest.readyState === 4 && httpRequest.status === 200) {
             const json = httpRequest.responseText;//获取到json字符串，还需解析
             console.log(json);
+            const list = JSON.parse(json);
+            document.getElementById('rank-table').innerHTML = '<tr> <td>排名</td><td>名字</td><td>分数</td> </tr>' +
+                '<tr><td>1</td><td>' + list[0].user.name + '</td><td>' + list[0].score + '</td></tr>' +
+                '<tr><td>2</td><td>' + list[1].user.name + '</td><td>' + list[1].score + '</td></tr>' +
+                '<tr><td>3</td><td>' + list[2].user.name + '</td><td>' + list[2].score + '</td></tr>'
         }
     };
 </script>
