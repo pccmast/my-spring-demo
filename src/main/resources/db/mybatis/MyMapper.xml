@@ -6,13 +6,13 @@
     <select id="selectRank" resultMap="RankItem">
         select t.user_id, t.score_sum, user.name as user_name
         from (
-                 select user_id, sum(score) as score_sum
-                 from match
-                 group by user_id
-                 order by score_sum desc
-             ) t
-                 inner join user
-                            on t.user_id = user.id
+                     select user_id, sum(score) as score_sum
+                     from match
+                     group by user_id
+                     order by score_sum desc
+                     ) t
+                     inner join user
+                on t.user_id = user.id
     </select>
     <resultMap id="RankItem" type="RankItem">
         <result property="score" column="score_sum"/>
