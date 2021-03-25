@@ -1,18 +1,13 @@
 package com.example.springboot;
 
 import com.example.springboot.dao.UserMapper;
-import com.example.springboot.entity.RankItem;
 import com.example.springboot.entity.User;
 import com.example.springboot.service.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 public class HelloController {
@@ -58,11 +53,9 @@ public class HelloController {
         return userMapper.selectUserById(id);
     }
 
-    @RequestMapping("/rank")
-    public ModelAndView rankUser() {
-        List<RankItem> results = rankService.doService();
-        Map<String, Object> model = new HashMap<>();
-        model.put("items", results);
-        return new ModelAndView("index", model);
+    @RequestMapping("/AsyncRank")
+    @ResponseBody
+    public Object asyncRankUser() {
+        return rankService.doService();
     }
 }
